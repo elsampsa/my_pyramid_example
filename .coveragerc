@@ -1,3 +1,0 @@
-[run]
-source = my_pyramid_example
-omit = my_pyramid_example/test*
