@@ -19,8 +19,9 @@ def async_get2(request):
     first_name = request.params.get("first_name", "nadie")
     last_name = request.params.get("last_name", "nadie")
     print(first_name, last_name)
-    # list users home directory:
-    files = glob.glob(os.path.join(os.path.expanduser("~"),"*"))
+    # list main dir
+    # files = glob.glob(os.path.join(os.path.expanduser("~"),"*"))
+    files = glob.glob("/usr/sbin/ch*")
     # & some artificial lag:
     time.sleep(3)
     return Response(
@@ -36,7 +37,8 @@ def download(request):
 
 @view_config(route_name='download2')
 def download2(request):
-    files = glob.glob(os.path.join(os.path.expanduser("~"),"*"))
+    # files = glob.glob(os.path.join(os.path.expanduser("~"),"*"))
+    files = glob.glob("/usr/sbin/ch*")
     fullpath = files[0]
     filename = fullpath.split("/")[-1]
     f = open(fullpath, "rb")
