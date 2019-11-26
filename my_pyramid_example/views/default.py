@@ -47,3 +47,9 @@ def download2(request):
         content_disposition = 'attachment; filename=%s' % filename,
         content_type = 'application/octet-stream'
         )
+
+@view_config(route_name='shaka', renderer='../templates/shaka.jinja2')
+def shaka(request):
+    return {}
+
+

@@ -6,8 +6,9 @@ FROM ubuntu:18.10
 LABEL version="0.1"
 LABEL maintainer="sampsa.riikone@iki.fi"
 
-RUN apt-get update && apt-get install --yes apt-utils software-properties-common
-RUN apt-get update && apt-get install --yes build-essential sudo curl iputils-ping silversearcher-ag emacs ffmpeg python3-pip ipython3 libatlas-base-dev arp-scan libxml++2.6-dev libxslt1-dev supervisor redis-server
+# RUN apt-get update && apt-get install --yes apt-utils software-properties-common
+# RUN apt-get update && apt-get install --yes build-essential sudo curl iputils-ping silversearcher-ag emacs ffmpeg python3-pip ipython3 libatlas-base-dev arp-scan libxml++2.6-dev libxslt1-dev supervisor redis-server
+RUN apt-get update && apt-get install --yes sudo python3-pip supervisor redis-server
 RUN echo "root:root" | chpasswd 
 
 # run all extra background services with supervisord
@@ -23,7 +24,10 @@ RUN pip3 install my_pyramid_example-*
 RUN mkdir -p /app/my_pyramid_example
 COPY *.ini /app/my_pyramid_example/
 
-ENV USER root
+# ENV USER root
+RUN useradd -m dockerman
+USER dockerman
+
 # ENTRYPOINT ["/usr/bin/supervisord"]
 CMD ["/usr/bin/supervisord"]
 ## CMD: run a command when an entry point has not been specified

@@ -77,19 +77,28 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
+
         <div class="col-md-4">
           <h2>Asynchronous GET demo</h2>
           <!-- NOTE: use here the route names you have defined in "routes.py" -->
           <p><a class="btn btn-default" href="{{request.route_url('async_get')}}" role="button">Try Asynchronous GET &raquo;</a></p>
         </div>
+
         <div class="col-md-4">
           <h2>Download demo</h2>
           <p><a class="btn btn-default" href="{{request.route_url('download')}}" role="button">Try Download &raquo;</a></p>
        </div>
+
         <div class="col-md-4">
           <h2>Session demo</h2>
           <p><a class="btn btn-default" href="{{request.route_url('session')}}" role="button">Try Session &raquo;</a></p>
         </div>
+
+        <div class="col-md-4">
+          <h2>Videoplayer demo</h2>
+          <p><a class="btn btn-default" href="{{request.route_url('shaka')}}" role="button">Try Video &raquo;</a></p>
+        </div>
+
       </div>
 
       <hr>
