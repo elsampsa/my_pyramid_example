@@ -52,4 +52,7 @@ def download2(request):
 def shaka(request):
     return {}
 
+@view_config(route_name='websocket', renderer='../templates/websocket.jinja2')
+def shaka(request):
+    return {}
 

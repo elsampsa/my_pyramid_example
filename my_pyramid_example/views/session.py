@@ -35,7 +35,7 @@ class SessionView:
         return res
 
 
-    @view_config(route_name = "session_push") # do HTTP GET here to zip the latest events
+    @view_config(route_name = "session_push")
     def session_push(self):
         """Push more data to cache
         """
@@ -48,7 +48,7 @@ class SessionView:
         return HTTPFound(location='/session') # redirect
 
 
-    @view_config(route_name = "session_clear") # do HTTP GET here to zip the latest events
+    @view_config(route_name = "session_clear")
     def session_clear(self):
         """Clear cached data
         """

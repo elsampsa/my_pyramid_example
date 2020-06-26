@@ -73,14 +73,25 @@ subaddress : /session_clear     clear all data from cache
 view       : views/session.py
 ```
 
-### Shaka Videoplayer
-- Demoes google's shaka dash media player.  See [here](https://shaka-player-demo.appspot.com/docs/api/tutorial-basic-usage.html)
+### Dash video player
+- A nice videoplayer that implements dash, is google's shaka dash media player.  See [here](https://shaka-player-demo.appspot.com/docs/api/tutorial-basic-usage.html)
 - Shaka's ```dist/shaka-player.compiled*``` dir is copied to ```static/shaka/```
-- For generating ```.mpd``` playlist, use shaka packager.  Build instructions are [here](https://github.com/google/shaka-packager/blob/master/docs/source/build_instructions.md)
+- We use [dash xml file](dash.mpd) provided by google [in here](https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd)
+- (dash xml schema files are [here](https://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/))
+- When using dash, it all boils down to generating the mpd xml files.  The look like [this](https://www.brendanlong.com/the-structure-of-an-mpeg-dash-mpd.html)
+- There seems to be no tool to simply generate mpd files.  Alternative for generating mpd files *and* video are [ffmpeg](https://ffmpeg.org/ffmpeg-formats.html#dash-2) for which all dash options seem to be broken, and [gpac](https://gpac.wp.imt.fr/downloads/gpac-nightly-builds/)
+- For generating ```.mpd``` playlist, one can try to use the shaka packager.  Build instructions are [here](https://github.com/google/shaka-packager/blob/master/docs/source/build_instructions.md)
 - ..it uses "gyp" to generate makefiles & build.  Complicated, but the instructions are in that link.  So much work just to generate a few xml files.. :/
 - How to use it, see [here](https://google.github.io/shaka-packager/html/tutorials/basic_usage.html)
+- After finishing the make process, dash playlist generator appears in ```out/Release/mpd_generator```.  It takes as an input file "media info files".  God knows what they are.
 ```
 renders    : shaka.jinja2 => base.jinja2
 route name : shaka
 view       : views/default.py
 ```
+
+### Web basics
+
+- TCP server at 80.  Initial negotiations by the webserver.  Server & client decide upon unique TCP socket (with unique in/out ports)
+- Request goes through that unique TCP socket.  After the request, the socket is discarded (single use)
+

@@ -1,2 +1,7 @@
 /build/
 /dist/
+/sof
+dash.mpd
+mpdgen.py
+clips/
+tools/
