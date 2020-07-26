@@ -8,5 +8,3 @@
 
 Now you can access the webpage in http://127.0.0.1:8080 and the websocket example should work
 
-
-
